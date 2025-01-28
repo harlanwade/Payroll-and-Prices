@@ -28,4 +28,4 @@ select
 	  and payroll_quarter = 4
 	  and category_name = 'Mléko polotučné pasterované'
   )
-  as life_level_in_2019
+  as life_level_in_2018
