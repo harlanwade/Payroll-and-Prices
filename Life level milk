@@ -1,0 +1,31 @@
+select 
+    (
+    select avg(payroll_value) as avg_payroll_value
+	from t_krystof_karel_project_SQL_primary_final
+	where payroll_year = 2006
+	 and payroll_quarter = 1
+ )
+/
+(
+	select price_value
+	from t_krystof_karel_project_SQL_primary_final
+	where payroll_year = 2006
+	  and payroll_quarter = 1
+	  and category_name = 'Mléko polotučné pasterované'
+  )
+  as life_level_in_2006,
+  (
+    select avg(payroll_value) as avg_payroll_value
+	from t_krystof_karel_project_SQL_primary_final
+	where payroll_year = 2018
+	 and payroll_quarter = 4
+ )
+/
+(
+	select price_value
+	from t_krystof_karel_project_SQL_primary_final
+	where payroll_year = 2018
+	  and payroll_quarter = 4
+	  and category_name = 'Mléko polotučné pasterované'
+  )
+  as life_level_in_2019
