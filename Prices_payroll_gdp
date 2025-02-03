@@ -1,0 +1,81 @@
+with value_changes as (
+	select
+	    payroll_year,
+	    industry_branch_name,
+	    null as category_name,
+	    payroll_value,
+	    lag(payroll_value) over (
+	        partition by industry_branch_name 
+	        order by payroll_year
+	    ) as prev_payroll_value,
+	    null as price_value,
+	    null as prev_price_value
+	from t_krystof_karel_project_SQL_primary_final
+	where payroll_quarter = 1
+		and industry_branch_name is not null
+
+	union all
+
+	select
+	    payroll_year,
+	    null as industry_branch_name,
+	    category_name,
+	    null as payroll_value,
+	    null as prev_payroll_value,
+	    price_value,
+	    lag(price_value) over (
+	        partition by category_name 
+	        order by payroll_year
+	    ) as prev_price_value
+	from t_krystof_karel_project_SQL_primary_final
+	where payroll_quarter = 1
+		and category_name is not null
+	),
+gdp_changes as (
+	select
+	    year,
+	    gdp,
+	    lag(gdp) over (
+	        partition by country 
+	        order by year
+	    ) as prev_gdp_value
+	from economies e 
+	where country = 'Czech Republic'
+	)
+select
+	payroll_year,
+    round(avg(
+        case 
+            when prev_payroll_value is not null then 
+                ((payroll_value - prev_payroll_value) / prev_payroll_value) * 100
+            else null
+        end
+    ), 2) as avg_payroll_increase_percent,
+    round(avg(
+        case 
+            when prev_price_value is not null then 
+                ((price_value - prev_price_value) / prev_price_value) * 100
+            else null
+        end
+    ), 2) as avg_price_increase_percent,
+    (round(avg(
+        case 
+            when prev_payroll_value is not null then 
+                ((payroll_value - prev_payroll_value) / prev_payroll_value) * 100
+            else null
+        end
+    ), 2))
+    -
+    (round(avg(
+        case 
+            when prev_price_value is not null then 
+                ((price_value - prev_price_value) / prev_price_value) * 100
+            else null
+        end
+    ), 2)) as difference,
+    gdp - prev_gdp_value as gdp_increase
+from value_changes v
+join gdp_changes g
+	on g.year = v.payroll_year
+group by payroll_year, gdp, prev_gdp_value
+order by payroll_year
