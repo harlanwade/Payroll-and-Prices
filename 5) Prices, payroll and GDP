@@ -1,23 +1,23 @@
 with value_changes as (
 	select
-	    payroll_year,
+	    year,
 	    industry_branch_name,
 	    null as category_name,
 	    payroll_value,
 	    lag(payroll_value) over (
 	        partition by industry_branch_name 
-	        order by payroll_year
+	        order by year
 	    ) as prev_payroll_value,
 	    null as price_value,
 	    null as prev_price_value
 	from t_krystof_karel_project_SQL_primary_final
-	where payroll_quarter = 1
+	where quarter = 1
 		and industry_branch_name is not null
 
 	union all
 
 	select
-	    payroll_year,
+	    year,
 	    null as industry_branch_name,
 	    category_name,
 	    null as payroll_value,
@@ -25,10 +25,10 @@ with value_changes as (
 	    price_value,
 	    lag(price_value) over (
 	        partition by category_name 
-	        order by payroll_year
+	        order by year
 	    ) as prev_price_value
 	from t_krystof_karel_project_SQL_primary_final
-	where payroll_quarter = 1
+	where quarter = 1
 		and category_name is not null
 	),
 gdp_changes as (
@@ -43,7 +43,7 @@ gdp_changes as (
 	where country = 'Czech Republic'
 	)
 select
-	payroll_year,
+	v.year,
     round(avg(
         case 
             when prev_payroll_value is not null then 
@@ -76,6 +76,6 @@ select
     gdp - prev_gdp_value as gdp_increase
 from value_changes v
 join gdp_changes g
-	on g.year = v.payroll_year
-group by payroll_year, gdp, prev_gdp_value
-order by payroll_year
+	on g.year = v.year
+group by v.year, gdp, prev_gdp_value
+order by year;
