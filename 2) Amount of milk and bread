@@ -1,0 +1,60 @@
+select 
+    (
+        select avg(payroll_value) 
+        from t_krystof_karel_project_SQL_primary_final
+        where year = 2006
+          	and quarter = 1
+    ) 
+    / 
+    (
+        select price_value 
+        from t_krystof_karel_project_SQL_primary_final
+        where year = 2006
+          	and quarter = 1
+          	and category_name = 'Mléko polotučné pasterované'
+    ) as amount_of_milk_avg_2006,
+
+    (
+        select avg(payroll_value) 
+        from t_krystof_karel_project_SQL_primary_final
+        where year = 2018
+          	and quarter = 4
+    ) 
+    / 
+    (
+        select price_value 
+        from t_krystof_karel_project_SQL_primary_final
+        where year = 2018
+          	and quarter = 4
+          	and category_name = 'Mléko polotučné pasterované'
+    ) as amount_of_milk_avg_2018,
+
+    (
+        select avg(payroll_value) 
+        from t_krystof_karel_project_SQL_primary_final
+        where year = 2006
+        	and quarter = 1
+    ) 
+    / 
+    (
+        select price_value 
+        from t_krystof_karel_project_SQL_primary_final
+        where year = 2006
+          	and quarter = 1
+          	and category_name = 'Chléb konzumní kmínový'
+    ) as amount_of_bread_avg_2006,
+
+    (
+        select avg(payroll_value) 
+        from t_krystof_karel_project_SQL_primary_final
+        where year = 2018
+          	and quarter = 4
+    ) 
+    / 
+    (
+        select price_value 
+        from t_krystof_karel_project_SQL_primary_final
+        where year = 2018
+          	and quarter = 4
+          	and category_name = 'Chléb konzumní kmínový'
+    ) as amount_of_bread_avg_2018;
