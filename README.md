@@ -24,8 +24,8 @@ Pro analýzu byla využita následující data:
 ## 🏆 Hlavní výstupy
 V rámci projektu byly vytvořeny dvě klíčové tabulky:
 
-1. **t_{jmeno}_{prijmeni}_project_SQL_primary_final** – sjednocená data pro mzdy a ceny potravin v ČR.
-2. **t_{jmeno}_{prijmeni}_project_SQL_secondary_final** – ekonomická data evropských zemí.
+1. **t_krystof_karel_project_SQL_primary_final** – sjednocená data pro mzdy a ceny potravin v ČR.
+2. **t_krystof_karel_project_SQL_secondary_final** – ekonomická data evropských zemí.
 
 Dále jsou součástí projektu SQL dotazy, které odpovídají na následující otázky:
 1. Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?
