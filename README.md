@@ -39,7 +39,7 @@ Dále jsou součástí projektu SQL dotazy, které odpovídají na následujíc�
 ## 📂 Struktura repozitáře
 - `sql/` – obsahuje SQL skripty pro vytvoření a analýzu tabulek.
 - `README.md` – tento soubor s přehledem projektu.
-- `final_report.docx` – obsahuje slovní shrnutí zjištění, která z dat vyplývají.
+- `final_report_sql.docx` – obsahuje slovní shrnutí zjištění, která z dat vyplývají.
 
 ---
 
