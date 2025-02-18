@@ -38,7 +38,7 @@ Dále jsou součástí projektu SQL dotazy, které odpovídají na následujíc�
 
 ## 📂 Struktura repozitáře
 - `sql/` – obsahuje SQL skripty pro vytvoření a analýzu tabulek.
-- `docs/` – obsahuje popis dat, mezivýsledků a analýzu chybějících hodnot.
+- `docs/` – obsahuje slovní shrnutí zjištění, která z dat vyplývají.
 - `README.md` – tento soubor s přehledem projektu.
 
 ---
