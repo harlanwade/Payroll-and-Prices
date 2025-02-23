@@ -33,6 +33,7 @@ with value_changes as (
 	from t_krystof_karel_project_SQL_primary_final
 		where category_name is not null
 	)
+	
 -- Hlavní dotaz pro výpočet průměrné změny mezd, průměrné změny cen a jejich rozdílu
 select
 	year,
