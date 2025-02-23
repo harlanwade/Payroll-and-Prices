@@ -1,7 +1,6 @@
 create table t_krystof_karel_project_SQL_primary_final as
 select
     cpay.payroll_year as year,
-    cpay.payroll_quarter as quarter,
     cpib.name as industry_branch_name,
     round(avg(cpay.value)::numeric, 2) as payroll_value,
     NULL as category_name,
@@ -12,7 +11,6 @@ join czechia_payroll_industry_branch cpib
 where cpay.value_type_code = 5958
 group by
     cpay.payroll_year,
-    cpay.payroll_quarter,
     cpay.industry_branch_code,
     cpib.name
 
@@ -20,7 +18,6 @@ union all
 
 select
     cpay.payroll_year as year,
-    cpay.payroll_quarter as quarter,
     NULL as industry_branch_name,
     NULL as payroll_value,
     cpc.name as category_name,
@@ -30,11 +27,9 @@ join czechia_price_category cpc
     on cpr.category_code = cpc.code
 join czechia_payroll cpay
     on cpay.payroll_year = date_part('year', cpr.date_from)
-    and cpay.payroll_quarter = extract('quarter' from cpr.date_from)
 where cpay.value_type_code = 5958
 group by
     cpay.payroll_year,
-    cpay.payroll_quarter,
     cpc.name
 
-order by year, quarter, industry_branch_name, category_name;
+order by year, industry_branch_name, category_name;
