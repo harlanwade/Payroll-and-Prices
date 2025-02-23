@@ -1,5 +1,5 @@
 -- Vytváříme tabulku s průměrnými mzdami podle odvětví a průměrnými cenami podle kategorií
-v České republice v dostupném časovém obdoví
+-- v České republice v dostupném časovém obdoví
 
 create table t_krystof_karel_project_SQL_primary_final as
 
