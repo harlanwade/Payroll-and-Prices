@@ -19,7 +19,6 @@ with value_changes as (
 	union all  -- Spojení s dalším výběrem pro ceny (bez mezd)
 
 	-- Výběr údajů pro ceny, včetně předchozích hodnot
-
 	select
 	    year,
 	    null as industry_branch_name,
