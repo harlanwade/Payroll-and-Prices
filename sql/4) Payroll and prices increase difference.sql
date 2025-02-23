@@ -11,8 +11,7 @@ with value_changes as (
 	    null as price_value,
 	    null as prev_price_value
 	from t_krystof_karel_project_SQL_primary_final
-	where quarter = 1
-		and industry_branch_name is not null
+		where industry_branch_name is not null
 
 	union all
 
@@ -28,8 +27,7 @@ with value_changes as (
 	        order by year
 	    ) as prev_price_value
 	from t_krystof_karel_project_SQL_primary_final
-	where quarter = 1
-		and category_name is not null
+		where category_name is not null
 	)
 select
 	year,
@@ -64,4 +62,4 @@ select
     ), 2)) as difference
 from value_changes
 group by year
-order by year;
+order by year
