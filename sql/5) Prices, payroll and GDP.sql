@@ -11,8 +11,7 @@ with value_changes as (
 	    null as price_value,
 	    null as prev_price_value
 	from t_krystof_karel_project_SQL_primary_final
-	where quarter = 1
-		and industry_branch_name is not null
+		where industry_branch_name is not null
 
 	union all
 
@@ -28,8 +27,7 @@ with value_changes as (
 	        order by year
 	    ) as prev_price_value
 	from t_krystof_karel_project_SQL_primary_final
-	where quarter = 1
-		and category_name is not null
+		where category_name is not null
 	),
 gdp_changes as (
 	select
@@ -73,7 +71,7 @@ select
             else null
         end
     ), 2)) as difference,
-    gdp - prev_gdp_value as gdp_increase
+    round((gdp - prev_gdp_value)::numeric, 2) as gdp_increase
 from value_changes v
 join gdp_changes g
 	on g.year = v.year
