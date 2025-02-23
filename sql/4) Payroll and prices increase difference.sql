@@ -62,4 +62,4 @@ select
     ), 2)) as difference
 from value_changes
 group by year
-order by year
+order by year;
