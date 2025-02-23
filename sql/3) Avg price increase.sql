@@ -8,7 +8,6 @@ with price_changes as (
             order by year
         ) as prev_price_value
     from t_krystof_karel_project_SQL_primary_final
-    where quarter = 1
 )
 select 
     category_name,
