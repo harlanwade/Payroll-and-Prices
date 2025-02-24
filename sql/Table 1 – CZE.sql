@@ -7,7 +7,7 @@ create table t_krystof_karel_project_SQL_primary_final as
 select
     cpay.payroll_year as year,
     cpib.name as industry_branch_name,
-    round(avg(cpay.value)::numeric, 2) as payroll_value,
+    round(avg(cpay.value)::numeric, 2) as payroll_value,  -- Průměrná hodnota mzdy (zaokrouhlená na 2 desetinná místa)
     NULL as category_name,
     NULL as price_value
 from czechia_payroll cpay 
@@ -27,7 +27,7 @@ select
     NULL as industry_branch_name,
     NULL as payroll_value,
     cpc.name as category_name,
-    round(avg(cpr.value)::numeric, 2) as price_value
+    round(avg(cpr.value)::numeric, 2) as price_value  -- Průměrná hodnota ceny (zaokrouhlená na 2 desetinná místa)
 from czechia_price cpr 
 join czechia_price_category cpc 
     on cpr.category_code = cpc.code
