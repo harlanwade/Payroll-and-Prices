@@ -33,7 +33,7 @@ join czechia_price_category cpc
     on cpr.category_code = cpc.code   -- Spojení s tabulkou kategorií na základě kódu kategorie
 join czechia_payroll cpay
     on cpay.payroll_year = date_part('year', cpr.date_from)  -- Spojení s tabulkou výplat podle roku
-where cpay.value_type_code = 5958   Filtrujeme podle typu hodnoty (měsíční mzda)
+where cpay.value_type_code = 5958   --Filtrujeme podle typu hodnoty (měsíční mzda)
 group by
     cpay.payroll_year,
     cpc.name
