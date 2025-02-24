@@ -11,8 +11,8 @@ select
     NULL as category_name,
     NULL as price_value
 from czechia_payroll cpay 
-join czechia_payroll_industry_branch cpib 
-    on cpay.industry_branch_code = cpib.code
+join czechia_payroll_industry_branch cpib   -- Spojení s tabulkou odvětví na základě kódu
+    on cpay.industry_branch_code = cpib.code   -- Filtrujeme podle typu hodnoty (měsíční mzda)
 where cpay.value_type_code = 5958
 group by
     cpay.payroll_year,
@@ -30,10 +30,10 @@ select
     round(avg(cpr.value)::numeric, 2) as price_value  -- Průměrná hodnota ceny (zaokrouhlená na 2 desetinná místa)
 from czechia_price cpr 
 join czechia_price_category cpc 
-    on cpr.category_code = cpc.code
+    on cpr.category_code = cpc.code   -- Spojení s tabulkou kategorií na základě kódu kategorie
 join czechia_payroll cpay
-    on cpay.payroll_year = date_part('year', cpr.date_from)
-where cpay.value_type_code = 5958
+    on cpay.payroll_year = date_part('year', cpr.date_from)  -- Spojení s tabulkou výplat podle roku
+where cpay.value_type_code = 5958   Filtrujeme podle typu hodnoty (měsíční mzda)
 group by
     cpay.payroll_year,
     cpc.name
